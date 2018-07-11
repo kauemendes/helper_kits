@@ -3,6 +3,12 @@ from flask import make_response, jsonify
 from app import prepare_json_response
 
 
+class CustomError(Exception):
+    def __init__(self, message, errors=None):
+        super(CustomError, self).__init__(message)
+        # self.errors = errors
+
+
 class ErrorKit:
 
     @staticmethod

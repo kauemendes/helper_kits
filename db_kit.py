@@ -1,5 +1,4 @@
 from app.helper_kit.string_kit import StringKit
-from app.models.enums import ProcessTypeNames
 
 
 class DBKit:
@@ -82,32 +81,3 @@ class DBKit:
             final_result = " ( " + result + " ) and (" + field + " IS NULL OR (" + result_neg + ")) "
 
         return final_result, dict_values
-
-    @staticmethod
-    def generate_filter_for_process_pending(process_pending):
-        result = ""
-        dict_values = {}
-
-        for process in process_pending:
-            value_key = StringKit.random_key(10) + str(process)
-
-            if result != "":
-                result += " OR "
-
-            if process == ProcessTypeNames.PROCESS_REQUEST.value:
-                result += " s.process_type_request =  :"+value_key
-                dict_values[value_key] = 0
-            if process == ProcessTypeNames.PROCESS_APPROVAL.value:
-                result += " s.process_type_approval = :"+value_key
-                dict_values[value_key] = 0
-            if process == ProcessTypeNames.PROCESS_PRE_ANESTHETIC.value:
-                result += " s.process_type_pre_anesthetic = :"+value_key
-                dict_values[value_key] = 0
-            if process == ProcessTypeNames.PROCESS_SCHEDULING.value:
-                result += " s.process_type_scheduling = :"+value_key
-                dict_values[value_key] = 0
-            if process == ProcessTypeNames.PROCESS_POST_SURGICAL.value:
-                result += " s.process_type_post_surgical = :"+value_key
-                dict_values[value_key] = 0
-
-        return result, dict_values

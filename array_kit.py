@@ -1,5 +1,4 @@
 
-
 class ArrayKit:
 
     @staticmethod
@@ -20,3 +19,17 @@ class ArrayKit:
             return None
 
         return values[index]
+
+    @staticmethod
+    def check_array_zero_values(arr_values):
+        if len(arr_values) > 0:
+            i = 0
+            j = 0
+            for item in arr_values:
+                if isinstance(item, int) or isinstance(item, float):
+                    j += 1
+                    if item <= 0:
+                        i += 1
+            if i > 0:
+                raise TypeError('Value is zero or null, ' + str(i))
+        return True
