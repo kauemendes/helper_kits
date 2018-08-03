@@ -1,5 +1,7 @@
-from app.helper_kit.email_kit import EmailKit
-from app.models.emails import EmailModel
+from helper_kits.email_kit import EmailKit
+
+class EmailModel:
+    pass
 
 
 class MessageKit:

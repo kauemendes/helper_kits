@@ -1,6 +1,6 @@
 from flask import make_response, jsonify
 
-from app import prepare_json_response
+from helper_kits.util_kit import prepare_json_response
 
 
 class CustomError(Exception):

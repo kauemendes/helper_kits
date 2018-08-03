@@ -1,37 +1,9 @@
-import boto
 import os
 
 from app import app, mailer, mail
 
 
 class EmailKit:
-    @staticmethod
-    def message_dispatch(email_to, subject, body):
-
-        # converting it to array
-        if type(email_to) == str:
-            email_to = [email_to]
-
-        # apenas o ambiente de development
-        if os.getenv('APP_SETTINGS') == "config.DevelopmentConfig" or \
-           os.getenv('APP_SETTINGS') == "config.DevelopmentContainerConfig" or \
-           app.config["DEBUG"]:
-
-            # replace for medt.com.br emails with debug true making sure we are sending not to production
-            for i, val in enumerate(email_to):
-                val = val.split("@")[0] + "@medt.com.br"
-                email_to[i] = val
-
-        try:
-            mailer.send(
-                to_addresses=email_to,
-                subject=subject,
-                body=body,
-                format="html"
-            )
-            return True
-        except boto.exception.BotoServerError as error:
-            return False
 
     @staticmethod
     def message_dispatch_sendgrid(email_to: list, subject: str, body: str, *args, **kwargs) -> object:
@@ -45,9 +17,9 @@ class EmailKit:
            os.getenv('APP_SETTINGS') == "config.DevelopmentContainerConfig" or \
            app.config["DEBUG"]:
 
-            # replace for medt.com.br emails with debug true making sure we are sending not to production
+            # replace for email.com.br emails with debug true making sure we are sending not to production
             for i, val in enumerate(email_to):
-                val = val.split("@")[0] + "@medt.com.br"
+                val = val.split("@")[0] + "@email.com.br"
                 email_to[i] = val
 
         to_email = []

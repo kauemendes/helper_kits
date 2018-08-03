@@ -1,16 +1,4 @@
-from app.models.enums import ProcessTypeNames
-
-
 class ValidationKit:
-
-    @staticmethod
-    def is_valid_process_type(process_type_value: str) -> bool:
-
-        try:
-            ProcessTypeNames(process_type_value)
-            return True
-        except Exception as e:
-            return False
 
     @staticmethod
     def is_object(value) -> bool:

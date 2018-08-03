@@ -3,7 +3,7 @@ from flask import json
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm.attributes import QueryableAttribute
 
-from string_kit import StringKit
+from helper_kits.string_kit import StringKit
 
 
 class DBKit:

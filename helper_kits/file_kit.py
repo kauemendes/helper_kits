@@ -2,8 +2,12 @@ import os
 
 import magic
 
-from app.helper_kit.s3kit import s3Kit
+from helper_kits.s3kit import s3Kit
 from app import app
+
+
+class FileNotFoundError(Exception):
+    pass
 
 
 class FileKit(object):
